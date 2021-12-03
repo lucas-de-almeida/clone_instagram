@@ -5,8 +5,6 @@ import 'package:instagram_clone/home_page/widgets/avatar.dart';
 import 'package:instagram_clone/home_page/widgets/post.dart';
 import 'package:instagram_clone/repositories/person_repository.dart';
 
-var personRepository = PersonRepository();
-
 class HomePage extends GetView<HomePageController> {
   const HomePage({Key? key}) : super(key: key);
 

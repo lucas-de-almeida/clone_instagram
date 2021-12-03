@@ -1,27 +1,31 @@
 import 'dart:convert';
 
-import 'package:instagram_clone/models/person.dart';
 import 'package:http/http.dart';
+
+import 'package:instagram_clone/models/person.dart';
+import 'package:instagram_clone/rest_client/rest_client.dart';
 
 late List<Person> listPerson;
 
 class PersonRepository {
-  Future<List<Person>> findPerson() async {
-    var url = 'https://https://randomuser.me/api/?results=5';
-    var response = await get(Uri.parse(url));
-    listPerson = [];
+  final RestClient _restClient;
+  PersonRepository({
+    required RestClient restClient,
+  }) : _restClient = restClient;
 
-    if (response.statusCode == 200) {
-      List lista = jsonDecode(response.body);
-      if (lista is List) {
-        for (var person in lista) {
-          listPerson.add(Person.fromMap(person));
-        }
+  Future<List<Person?>?> findPerson() async {
+    var url = 'https://randomuser.me/api/?results=5';
+
+    final result = await _restClient.get<List<Person?>>(url, decoder: (data) {
+      final resultData = data["results"];
+      if (resultData != null) {
+        return resultData
+            .map<Person>((person) => Person.fromMap(person))
+            .toList();
+      } else {
+        throw Exception();
       }
-
-      return listPerson;
-    } else {
-      throw Exception();
-    }
+    });
+    return result.body;
   }
 }

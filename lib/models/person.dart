@@ -20,9 +20,9 @@ class Person {
 
   factory Person.fromMap(Map<String, dynamic> map) {
     return Person(
-      name: map['name'],
-      lastName: map['lastName'],
-      imagem: map['imagem'],
+      name: map['name']['first'],
+      lastName: map['name']['last'],
+      imagem: map['picture']['medium'],
     );
   }
 

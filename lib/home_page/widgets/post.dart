@@ -21,18 +21,22 @@ class Post extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               HeadPost(),
-                   Icon(Icons.auto_awesome_motion ,color: Colors.white,),
-
+              Icon(
+                Icons.auto_awesome_motion,
+                color: Colors.white,
+              ),
             ],
           ),
-          Divider(color: Colors.white,),
+          Divider(
+            color: Colors.white,
+          ),
           Container(
             color: Colors.white,
-      height: MediaQuery.of(context).size.height * 0.55,
-      width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.55,
+            width: MediaQuery.of(context).size.width,
           ),
-          BottomPost(),
-          Comments()
+          //BottomPost(),
+          //Comments()
         ],
       ),
     );
